@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBenefitRemindersTable extends Migration
+class CreateAddSellerPeopleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateBenefitRemindersTable extends Migration
      */
     public function up()
     {
-        Schema::create('benefit_reminders', function (Blueprint $table) {
+        Schema::create('add_seller_people', function (Blueprint $table) {
             $table->id();
-            $table->integer('package_id');
-            $table->foreign('package_id')->references('id')->on('packages');
-            $table->date('payed_at');
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->string('phone');
+            $table->string('email');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateBenefitRemindersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('benefit_reminders');
+        Schema::dropIfExists('add_seller_people');
     }
 }

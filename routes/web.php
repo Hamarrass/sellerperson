@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AddSellerPersonController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +23,7 @@ Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/sellerPerson',[App\Http\Controllers\SellerPersonController::class,'index'])->name('home');
-
+Route::resource('addsellerPerson', AddSellerPersonController::class);
 Route::get('/sellerPerson', function () {
     return view('sellerPersons.sellerperson');
 });

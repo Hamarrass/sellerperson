@@ -10,6 +10,12 @@
 <!-- RuangAdmin CSS -->
 <link href="css/ruang-admin.min.css" rel="stylesheet">
 
+
+
+
+
+
+
 @endsection
 
 
@@ -17,7 +23,11 @@
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-
+        @if(Session::has('flash_message'))
+        <div class="alert alert-success">
+            {{ Session::get('flash_message') }}
+        </div>
+    @endif
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
               id="#modalCenter">+</button>
               <h1 class="h3 mb-0 text-gray-800">SellerPerson   </h1>
@@ -41,49 +51,31 @@
             <table class="table align-items-left table-flush" id="dataTable">
               <thead class="thead-light">
                 <tr>
-                  <th>sellerPerson</th>
-                  <th>Dealer</th>
-                  <th>Package</th>
-                  <th>x</th>
-                  <th>y</th>
-                  <th>z</th>
+                    <th>Fisrt Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Action</th>
                 </tr>
               </thead>
-              <tfoot>
-                <tr>
-                  <th>sellerPerson</th>
-                  <th>Dealer</th>
-                  <th>Package</th>
-                  <th>x</th>
-                  <th>y</th>
-                  <th>z</th>
-                </tr>
-              </tfoot>
+
               <tbody>
+
+
+             @foreach ($sellers as $seller)
                 <tr>
-                  <td>Donna Snider</td>
-                  <td>Customer Support</td>
-                  <td>New York</td>
-                  <td>27</td>
-                  <td>2011/01/25</td>
-                  <td>$112,000</td>
+                    <td>{{$seller->firstName}}</td>
+                    <td>{{$seller->lastName}}</td>
+                    <td>{{$seller->phone}}</td>
+                    <td>{{$seller->email}}</td>
+                    <td> <form action="{{route('addsellerPerson.destroy',['addsellerPerson'=>$seller->id])}}" method="post">
+                         @csrf
+                         @method('DELETE')
+                         <input type="submit"   value='delete'>
+                        </form></td>
                 </tr>
-                <tr>
-                  <td>Michael Bruce</td>
-                  <td>Javascript Developer</td>
-                  <td>Singapore</td>
-                  <td>29</td>
-                  <td>2011/06/27</td>
-                  <td>$183,000</td>
-                </tr>
-                <tr>
-                  <td>Donna Snider</td>
-                  <td>Customer Support</td>
-                  <td>New York</td>
-                  <td>27</td>
-                  <td>2011/01/25</td>
-                  <td>$112,000</td>
-                </tr>
+            @endforeach
+
               </tbody>
             </table>
           </div>
@@ -148,91 +140,52 @@
    <div class="modal-dialog modal-dialog-centered" role="document">
      <div class="modal-content">
        <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalCenterTitle">Add Seller Person</h5>
+         <h5 class="modal-title " id="exampleModalCenterTitle" >Add   New Seller Person</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
        <div class="modal-body">
 
-        <form>
+       <form   class="from-group" method="POST" action='{{route('addsellerPerson.store')}}'>
 
-            <fieldset class="form-group">
-                <div class="row">
-                  <legend class="col-form-label col-sm-3 pt-0">category</legend>
-                  <div class="col-sm-9">
-                    <div class="form-check">
-                      <input type="radio"   class="form-check-input"  name='category' value="uppseller" id="category1" >
-                      <label class="form-check-label" for="category1">
-                        New seller
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="category" id="category2" value="newaccount">
-                      <label class="form-check-label" for="category2">
-                        UppSeller
-                      </label>
-                    </div>
-
-                  </div>
-                </div>
-              </fieldset>
+           @csrf
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Seller </label>
-              <div class="col-sm-9">
-                <select class="select2-single-placeholder form-control" name="sellerpersonId" id="sellerpersonId">
-                    <option value="">Select</option>
-                    <option value="Aceh">Hassan</option>
-                    <option value="Sumatra Utara">Mohcine</option>
-                    <option value="Sumatra Barat">Hamza </option>
-                  </select>
-              </div>
-            </div>
-
-            <fieldset class="form-group">
-              <div class="row">
-                <legend class="col-form-label col-sm-3 pt-0">Packages</legend>
+                <label for="firstName" class="col-sm-3 col-form-label">First Name</label>
                 <div class="col-sm-9">
-                  <div class="form-check">
-                    <input type="radio"   class="form-check-input"  name='package' value="99">
-                    <label class="form-check-label" for="package1">
-                      99$
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="package"  value="199">
-                    <label class="form-check-label" for="package2">
-                      199$
-                    </label>
-                  </div>
-                  <div class="form-check disabled">
-                    <input class="form-check-input" type="radio" name="package" value="299" >
-                    <label class="form-check-label" for="package3">
-                      299$
-                    </label>
-                  </div>
+                  <input type="text" class="form-control" id="firstName" placeholder="first name" name="firstName">
                 </div>
               </div>
-            </fieldset>
 
-            <div class="form-group row">
-                <label for="budget" class="col-sm-3 col-form-label">Add 360 budget</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="budget" placeholder="add 360 budget" value="" name="budget">
-                </div>
-              </div>
               <div class="form-group row">
-                <label for="DealerId" class="col-sm-3 col-form-label">DealerId</label>
+                <label for="lastName" class="col-sm-3 col-form-label">Last Name</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="DealerId" placeholder="DealerId">
+                  <input type="text" class="form-control" id="lastName" placeholder="last name" name="lastName">
                 </div>
               </div>
-          </form>
+
+              <div class="form-group row">
+                <label for="phone" class="col-sm-3 col-form-label">Phone</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="phone" placeholder="phone" name="phone">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="email" class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="email" placeholder="email" name="email">
+                </div>
+              </div>
+
+
+
        </div>
        <div class="modal-footer">
          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-         <button type="button" class="btn btn-primary">Save</button>
+         <button type="submit" class="btn btn-primary">Save</button>
        </div>
+    </form>
      </div>
    </div>
  </div>
