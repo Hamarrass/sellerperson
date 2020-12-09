@@ -42,7 +42,7 @@ class AddSellerPersonController extends Controller
          $data= $request->except('_token');
         $sellers=AddSellerPerson::create( $data);
         Session::flash('flash_message', 'SellerPerson successfully added!');
-        return  redirect()->route('addsellerPerson.index', ['sellers'=>$sellers]);
+        return  redirect()->route('addsellerPerson.index');
     }
 
     /**

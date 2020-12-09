@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SubscribeDealer;
 use Illuminate\Http\Request;
+use App\Models\AddSellerPerson;
+use App\Models\SubscribeDealer;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\AddSellerPersonRequest;
+use App\Http\Requests\SubscripeDealerRequest;
 
 class SubscribeDealerController extends Controller
 {
@@ -14,7 +18,10 @@ class SubscribeDealerController extends Controller
      */
     public function index()
     {
-        return view('subscribeDealers.subscribedealer');
+
+        $dealers = SubscribeDealer::cursor();
+        $sellers = AddSellerPerson::cursor();
+        return view('subscribeDealers.subscribedealer',['dealers'=>$dealers,'sellers'=>$sellers]);
     }
 
     /**
@@ -33,9 +40,14 @@ class SubscribeDealerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubscripeDealerRequest $request)
     {
-        //
+        $data= $request->except('_token');;
+        $dealers=SubscribeDealer::create( $data);
+
+        Session::flash('flash_message', 'Dealer successfully added!');
+        return  redirect()->route('subscribedealer.index');
+
     }
 
     /**

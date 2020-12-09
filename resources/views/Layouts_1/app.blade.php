@@ -47,8 +47,8 @@
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('addsellerPerson.index')}}">Add new Dealer</a>
-            <a class="collapse-item" href="{{route('subscribedealer.index')}}">Add new seller</a>
+            <a class="collapse-item" href="{{route('addsellerPerson.index')}}">Add new seller</a>
+            <a class="collapse-item" href="{{route('subscribedealer.index')}}">Add new Dealer</a>
           </div>
         </div>
 

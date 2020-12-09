@@ -14,8 +14,16 @@ class CreateSubscribeDealersTable extends Migration
     public function up()
     {
         Schema::create('subscribe_dealers', function (Blueprint $table) {
+
             $table->id();
+            $table->string('category');
+            $table->integer('seller_person_id');
+            $table->foreign('seller_person_id')->references('id')->on('add_seller_people');
+            $table->string('package');
+            $table->string('budget');
+            $table->string('dealerId');
             $table->timestamps();
+
         });
     }
 
