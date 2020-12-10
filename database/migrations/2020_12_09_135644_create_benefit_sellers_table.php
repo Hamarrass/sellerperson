@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAddSellerPeopleTable extends Migration
+class CreateBenefitSellersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateAddSellerPeopleTable extends Migration
      */
     public function up()
     {
-        Schema::create('add_seller_people', function (Blueprint $table) {
+        Schema::create('benefit_sellers', function (Blueprint $table) {
             $table->id();
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('englishName');
-            $table->string('email');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateAddSellerPeopleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('add_seller_people');
+        Schema::dropIfExists('benefit_sellers');
     }
 }

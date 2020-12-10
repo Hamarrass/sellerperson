@@ -23,11 +23,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/sellerPerson',[App\Http\Controllers\SellerPersonController::class,'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('addsellerPerson', AddSellerPersonController::class);
 Route::resource('subscribedealer', SubscribeDealerController::class);
 
 Route::get('/sellerPerson', function () {
     return view('sellerPersons.sellerperson');
 });
+
+
+Route::get('/new-client', [App\Http\Controllers\HomeController::class, 'newClient'])->name('new.client');
+Route::get('/upgrade-package', [App\Http\Controllers\HomeController::class, 'upgradePackage'])->name('upgrade.package');
+
+Route::get('/debug', [App\Http\Controllers\HomeController::class, 'debug'])->name('debug');

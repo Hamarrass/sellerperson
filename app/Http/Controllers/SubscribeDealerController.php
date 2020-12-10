@@ -18,8 +18,7 @@ class SubscribeDealerController extends Controller
      */
     public function index()
     {
-
-        $dealers = SubscribeDealer::cursor();
+        $dealers = SubscribeDealer::all();
         $sellers = AddSellerPerson::cursor();
         return view('subscribeDealers.subscribedealer',['dealers'=>$dealers,'sellers'=>$sellers]);
     }
@@ -42,8 +41,45 @@ class SubscribeDealerController extends Controller
      */
     public function store(SubscripeDealerRequest $request)
     {
-        $data= $request->except('_token');;
-        $dealers=SubscribeDealer::create( $data);
+
+
+        $oldPrice        = $request->input('oldPrice') ? $request->input('oldPrice')  : 0;
+        $newPrice        = $request->input('newPrice') ? $request->input('newPrice')  : 0;
+        $pricenewold     = ($newPrice - $oldPrice)*0.1 ;
+
+
+        $oldPrice        = $request->input('oldPrice');
+        $newPrice        = $request->input('newPrice');
+
+
+        $upgrade         = $request->input('upgrade');
+        $upgradePrice    = $request->input('upgradePackage') ;
+        $newClient       = $request->input('newClient');
+
+        $benifit=0;
+        if($newClient=='99'){
+            $benifit += 100 ;
+        }
+        if($upgrade=='upgrade'){
+
+            $benifit +=$upgradePrice  ;
+        }
+         $benifit =$pricenewold +$benifit;
+
+
+
+        $dealers= new SubscribeDealer();
+        $dealers->dateVente        = $request->input('dateVente');
+        $dealers->dealerId         = $request->input('dealerId');
+        $dealers->newClient        = $request->input('newClient');
+        $dealers->upsellerAd360    = $request->input('upsellerAd360');
+        $dealers->oldPrice         = $request->input('oldPrice');
+        $dealers->newPrice         = $request->input('newPrice');
+        $dealers->upgradePackage   = $request->input('upgradePackage') ;
+        $dealers->benifit          = $benifit;
+        $dealers->seller_person_id = $request->input('seller_person_id');
+        $dealers->save();
+
 
         Session::flash('flash_message', 'Dealer successfully added!');
         return  redirect()->route('subscribedealer.index');
@@ -90,8 +126,11 @@ class SubscribeDealerController extends Controller
      * @param  \App\Models\SubscribeDealer  $subscribeDealer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubscribeDealer $subscribeDealer)
+    public function destroy($subscribeDealer)
     {
-        //
+
+         $dealer = SubscribeDealer::find($subscribeDealer);
+         $dealer->delete();
+         return back();
     }
 }

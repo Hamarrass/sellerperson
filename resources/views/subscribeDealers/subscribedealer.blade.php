@@ -1,5 +1,4 @@
 
-
 @extends('layouts_1.app')
 @section('css')
 <link href="vendor/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css">
@@ -16,13 +15,14 @@
 
 
 @section('content')
+@if(Session::has('flash_message'))
+<div class="alert alert-success">
+    {{ Session::get('flash_message') }}
+</div>
+@endif
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        @if(Session::has('flash_message'))
-        <div class="alert alert-success">
-            {{ Session::get('flash_message') }}
-        </div>
-    @endif
+
   <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -42,36 +42,40 @@
       <!-- Datatables -->
       <div class="col-lg-12">
         <div class="card mb-4">
-         <!-- <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">SellerPerson</h6>
-          </div>-->
-
-          <div class="table-responsive p-3">
+          <div class="table-responsive p-1">
             <table class="table align-items-left table-flush" id="dataTable">
               <thead class="thead-light">
                 <tr>
-                  <th>DealerId</th>
-                  <th>Category</th>
-                  <th>Seller Person</th>
-                  <th>Package</th>
-                  <th>Budget</th>
-                  <th>Action</th>
+                  <th>Seller          </th>
+                  <th>Date Vente      </th>
+                  <th>Date Lancement  </th>
+                  <th>DealerId        </th>
+                  <th>new price       </th>
+                  <th>old price       </th>
+                  <th>new client      </th>
+                  <th>Upgrade package </th>
+                  <th>Benifit </th>
+                  dateLancement
                 </tr>
               </thead>
 
               <tbody>
-            @foreach ($dealers as $dealer)
-             <tr>
-                <td>{{$dealer->dealerId}}</td>
-                <td>{{$dealer->category}}</td>
-                <td>{{$dealer->seller_person_id}}</td>
-                <td>{{$dealer->package}}</td>
-                <td>{{$dealer->budget}}</td>
-                <td></td>
-              </tr>
-             @endforeach
+            @foreach ($dealers as $item)
 
 
+                <tr>
+                    <td>{{$item->seller_person_id }} </td>
+                    <td>{{$item->dateVente }}        </td>
+                    <td>{{$item->dateLancement }}    </td>
+                    <td>{{$item->dealerId }}         </td>
+                    <td>{{$item->newPrice}}          </td>
+                    <td>{{$item->oldPrice }}         </td>
+                    <td>{{$item->newClient }}        </td>
+                    <td>{{$item->upgradePackage }}   </td>
+                    <td>{{$item->benifit }}          </td>
+
+                  </tr>
+                 @endforeach
               </tbody>
             </table>
           </div>
@@ -91,15 +95,7 @@
     </div>
     <!--Row-->
 
-    <!-- Documentation Link -->
-    <!-- <div class="row">
-      <div class="col-lg-12">
-        <p>DataTables is a third party plugin that is used to generate the demo table below. For more information
-          about DataTables, please visit the official <a href="https://datatables.net/" target="_blank">DataTables
-            documentation.</a></p>
-      </div>
-    </div>
-     -->
+
 
     <!-- Modal Logout -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
@@ -144,86 +140,114 @@
        </div>
        <div class="modal-body">
 
-       <form action="{{route('subscribedealer.store')}}" method="POST">
+       <form    class="from-group" method="POST" action="{{route('subscribedealer.store')}}" >
            @csrf
+           <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Seller </label>
+            <div class="col-sm-9">
+              <select class="select2-single-placeholder form-control" name="seller_person_id" id="sellerpersonId">
+                  <option value="">Select</option>
+                      @foreach ($sellers as $seller)
+                          <option value="{{$seller->id}}">{{$seller->firstName}}  {{$seller->firstName}}</option>
+                      @endforeach
+                </select>
+            </div>
+          </div>
+
+           <div class="form-group row">
+            <label for="dateVente" class="col-sm-3 col-form-label">DateVente</label>
+            <div class="col-sm-9">
+              <input type="date" class="form-control" id="dateVente" placeholder="dateVente" value="" name="dateVente">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="dateLancement" class="col-sm-3 col-form-label">date de Lancement</label>
+            <div class="col-sm-9">
+              <input type="date" class="form-control" id="dateLancement" placeholder="dateLancement" value="" name="dateLancement">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="DealerId" class="col-sm-3 col-form-label">DealerId</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="DealerId" placeholder="DealerId" name="dealerId">
+            </div>
+          </div>
+
+
+
             <fieldset class="form-group">
                 <div class="row">
-                  <legend class="col-form-label col-sm-3 pt-0">category</legend>
+                  <legend class="col-form-label col-sm-3 pt-0">Upselle Ad360</legend>
                   <div class="col-sm-9">
                     <div class="form-check">
-                      <input type="radio"   class="form-check-input"  name='category' value="uppseller" id="category1" >
-                      <label class="form-check-label" for="category1">
-                        New seller
-                      </label>
+                      <input type="checkbox"     class="form-check-input"  name="upsellerAd360" id="upsellerAd360"  value="upsellerAd360" >
+                      <br>
                     </div>
+                    <div class="displayoldnew1">
+                       <div>
+                           <label for=""> new price</label>
+                          <input type="text"   class="form-input"  name='newPrice' value="">
+                       </div>
+                       <div>
+                        <label for=""> old price</label>
+                            <input type="text"   class="form-input"  name='oldPrice' value="">
+                       </div>
+                      </div>
+
+
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-group">
+                <div class="row">
+                  <legend class="col-form-label col-sm-3 pt-0">New client</legend>
+                  <div class="col-sm-9">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="category" id="category2" value="newaccount">
-                      <label class="form-check-label" for="category2">
-                        UppSeller
-                      </label>
+                      <input type="checkbox"     class="form-check-input"  name="newClient" id="newClient"  value="99" >
+                      <br>
                     </div>
 
                   </div>
                 </div>
               </fieldset>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Seller </label>
-              <div class="col-sm-9">
-                <select class="select2-single-placeholder form-control" name="seller_person_id" id="sellerpersonId">
-                    <option value="">Select</option>
-                        @foreach ($sellers as $seller)
-                            <option value="{{$seller->id}}">{{$seller->firstName}}  {{$seller->firstName}}</option>
-                        @endforeach
-                  </select>
-              </div>
-            </div>
 
-            <fieldset class="form-group">
-              <div class="row">
-                <legend class="col-form-label col-sm-3 pt-0">Packages</legend>
-                <div class="col-sm-9">
-                  <div class="form-check">
-                    <input type="radio"   class="form-check-input"  name='package' value="99">
-                    <label class="form-check-label" for="package1">
-                      99$
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="package"  value="199">
-                    <label class="form-check-label" for="package2">
-                      199$
-                    </label>
-                  </div>
-                  <div class="form-check disabled">
-                    <input class="form-check-input" type="radio" name="package" value="299" >
-                    <label class="form-check-label" for="package3">
-                      299$
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
+              <fieldset class="form-group">
+                <div class="row">
+                  <legend class="col-form-label col-sm-3 pt-0">Upgrade</legend>
+                  <div class="col-sm-9">
+                    <div class="form-check">
+                      <input type="checkbox"  class="form-check-input"  name="upgrade" id="upgrade"  value="upgrade" >
+                      <br>
+                    </div>
+                    <div>
 
-            <div class="form-group row">
-                <label for="budget" class="col-sm-3 col-form-label">Add 360 budget</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="budget" placeholder="add 360 budget" value="" name="budget">
+                       <div>
+                        <select class="select2-single-placeholder form-control" name="upgradePackage" id="upgradePackage">
+                                    <option value="" >Select</option>
+                                    <option value="100">99$  -> 199$</option>
+                                    <option value="200">99$  -> 299$</option>
+                                    <option value="100">199$ -> 299$</option>
+                          </select>
+                       </div>
+                      </div>
+
+
+                  </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="DealerId" class="col-sm-3 col-form-label">DealerId</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="DealerId" placeholder="DealerId" name="dealerId">
-                </div>
-              </div>
+              </fieldset>
+
 
        </div>
        <div class="modal-footer">
          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
          <button type="submit" class="btn btn-primary">Save</button>
        </div>
-     </div>
     </form>
+     </div>
+
    </div>
  </div>
 
@@ -269,6 +293,12 @@ $(document).ready(function () {
 
 
   });
+</script>
+
+<script>
+    displayoldnew(){
+        document.getElementById(".displayoldnew1").style.display = "block";
+    }
 </script>
   @endsection
 

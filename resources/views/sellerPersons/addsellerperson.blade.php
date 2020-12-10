@@ -10,24 +10,20 @@
 <!-- RuangAdmin CSS -->
 <link href="css/ruang-admin.min.css" rel="stylesheet">
 
-
-
-
-
-
-
 @endsection
 
 
 @section('content')
   <!-- Container Fluid-->
+  @if(Session::has('flash_message'))
+  <div class="alert alert-success">
+    {{ Session::get('flash_message') }}
+  </div>
+  @endif
+
   <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        @if(Session::has('flash_message'))
-        <div class="alert alert-success">
-            {{ Session::get('flash_message') }}
-        </div>
-    @endif
+
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
               id="#modalCenter">+</button>
               <h1 class="h3 mb-0 text-gray-800">SellerPerson   </h1>
@@ -43,9 +39,7 @@
       <!-- Datatables -->
       <div class="col-lg-12">
         <div class="card mb-4">
-         <!-- <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">SellerPerson</h6>
-          </div>-->
+
 
           <div class="table-responsive p-3">
             <table class="table align-items-left table-flush" id="dataTable">
@@ -53,7 +47,7 @@
                 <tr>
                     <th>Fisrt Name</th>
                     <th>Last Name</th>
-                    <th>Phone</th>
+                    <th>English Name</th>
                     <th>Email</th>
                     <th>Action</th>
                 </tr>
@@ -66,14 +60,14 @@
                 <tr>
                     <td>{{$seller->firstName}}</td>
                     <td>{{$seller->lastName}}</td>
-                    <td>{{$seller->phone}}</td>
+                    <td>{{$seller->englishName}}</td>
                     <td>{{$seller->email}}</td>
                     <td> <form action="{{route('addsellerPerson.destroy',['addsellerPerson'=>$seller->id])}}" method="post">
                          @csrf
                          @method('DELETE')
                          <input type="submit"   value='delete'>
                         </form></td>
-                </tr>
+                    </tr>
             @endforeach
 
               </tbody>
@@ -151,23 +145,23 @@
 
            @csrf
             <div class="form-group row">
-                <label for="firstName" class="col-sm-3 col-form-label">First Name</label>
+                <label for="firstName" class="col-sm-3 col-form-label">Nom</label>
                 <div class="col-sm-9">
                 <input type="text" class="form-control" id="firstName" placeholder="first name" name="firstName" value="{{old('firstName')}}">
                 </div>
               </div>
 
               <div class="form-group row">
-                <label for="lastName" class="col-sm-3 col-form-label">Last Name</label>
+                <label for="lastName" class="col-sm-3 col-form-label">Prenom</label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="lastName" placeholder="last name" name="lastName" value="{{old('lastName')}}">
                 </div>
               </div>
 
               <div class="form-group row">
-                <label for="phone" class="col-sm-3 col-form-label">Phone</label>
+                <label for="englishName" class="col-sm-3 col-form-label">English Name</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="phone" placeholder="phone" name="phone" value="{{old('phone')}}">
+                  <input type="text" class="form-control" id="englishName" placeholder="englishName" name="englishName" value="{{old('englishName')}}">
                 </div>
               </div>
 

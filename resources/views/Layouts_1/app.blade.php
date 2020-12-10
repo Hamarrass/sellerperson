@@ -55,6 +55,22 @@
 
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Prix </span>
+        </a>
+        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{route('new.client')}}">total prix new client</a>
+            <a class="collapse-item" href="{{route('upgrade.package')}}">total prix upgrade package</a>
+          </div>
+        </div>
+
+
+      </li>
+
 
       <!--
       <li class="nav-item">
@@ -307,8 +323,9 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
+           <!-- <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
               <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
+           -->
             </span>
           </div>
         </div>

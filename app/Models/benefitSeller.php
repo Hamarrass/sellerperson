@@ -2,15 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\SubscribeDealer;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class SellerPerson extends Model
+class benefitSeller extends Model
 {
     use HasFactory;
-
-
-
-
 }

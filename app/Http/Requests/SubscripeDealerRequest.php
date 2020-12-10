@@ -26,11 +26,7 @@ class SubscripeDealerRequest extends FormRequest
     public function rules()
     {
         return [
-           'category'         =>'required',
-           'seller_person_id' =>'required',
-           'package'          =>'required',
-           'budget'           =>'required',
-           'dealedrId'        =>'required'
+
         ];
     }
 }

@@ -11,7 +11,13 @@ class AddSellerPerson extends Model
     protected $fillable=[
         'firstName',
         'lastName',
-        'phone',
+        'englishName',
         'email'
     ];
+
+    public function  subscribe_dealer(){
+        return $this->hasMany(SubscribeDealer::class);
+   }
+
+
 }

@@ -16,12 +16,17 @@ class CreateSubscribeDealersTable extends Migration
         Schema::create('subscribe_dealers', function (Blueprint $table) {
 
             $table->id();
-            $table->string('category');
+            $table->date('dateVente')->nullable();
+            $table->date('dateLancement')->nullable();
+            $table->string('dealerId')->nullable();
+            $table->string('newClient')->nullable();
+            $table->string('upsellerAd360')->nullable();
+            $table->string('oldPrice')->nullable();
+            $table->string('newPrice')->nullable();
+            $table->string('upgradePackage')->nullable();
+            $table->string('benifit')->nullable();
             $table->integer('seller_person_id');
             $table->foreign('seller_person_id')->references('id')->on('add_seller_people');
-            $table->string('package');
-            $table->string('budget');
-            $table->string('dealerId');
             $table->timestamps();
 
         });

@@ -26,7 +26,7 @@ class AddSellerPersonRequest extends FormRequest
         return [
             'firstName'=>'required',
             'lastName' =>'required',
-            'phone'    =>'required',
+            'englishName'    =>'required',
             'email'    =>'required',
         ];
     }
