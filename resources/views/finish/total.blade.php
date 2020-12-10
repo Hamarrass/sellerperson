@@ -1,3 +1,4 @@
+
 @extends('layouts_1.app')
 @section('css')
 <link href="vendor/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css">
@@ -14,23 +15,20 @@
 
 
 @section('content')
-  <!-- Container Fluid-->
-  @if(Session::has('flash_message'))
-  <div class="alert alert-success">
-    {{ Session::get('flash_message') }}
-  </div>
-  @endif
 
+<div class="container-fluid" id="container-wrapper">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+  <!-- Container Fluid-->
   <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-              id="#modalCenter">+</button>
-              <h1 class="h3 mb-0 text-gray-800"> Vendeur   </h1>
+
+              <h1 class="h3 mb-0 text-gray-800"> Total    </h1>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="./">Home</a></li>
         <li class="breadcrumb-item">Tables</li>
-        <li class="breadcrumb-item active" aria-current="page"> Vendeur </li>
+        <li class="breadcrumb-item active" aria-current="page">Client</li>
       </ol>
     </div>
 
@@ -39,37 +37,45 @@
       <!-- Datatables -->
       <div class="col-lg-12">
         <div class="card mb-4">
-
-
-          <div class="table-responsive p-3">
+          <div class="table-responsive p-1">
             <table class="table align-items-left table-flush" id="dataTable">
               <thead class="thead-light">
                 <tr>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>English Name</th>
-                    <th>Email</th>
-                    <th>Action</th>
+                  <th>Seller          </th>
+                  <th>jan      </th>
+                  <th>fev  </th>
+                  <td>Mars        </td>
+                  <th>Avril        </th>
+                  <th>mai       </th>
+                  <th>Juin       </th>
+                  <th>Juil      </th>
+                  <th>Aout </th>
+                  <th>Sept </th>
+                  <th>Oct      </th>
+                  <th>Nov </th>
+                  <th>Dec </th>
                 </tr>
               </thead>
 
               <tbody>
 
+                @foreach ($total as $item)
 
-             @foreach ($sellers as $seller)
-                <tr>
-                    <td>{{$seller->firstName}}</td>
-                    <td>{{$seller->lastName}}</td>
-                    <td>{{$seller->englishName}}</td>
-                    <td>{{$seller->email}}</td>
-                    <td> <form action="{{route('addsellerPerson.destroy',['addsellerPerson'=>$seller->id])}}" method="post">
-                         @csrf
-                         @method('DELETE')
-                         <input type="submit"   value='delete'>
-                        </form></td>
+                <td>{{$item['seller_person_id']}}       </td>
+                    <td>{{$item['Jan']}} </td>
+                    <td>{{$item['Fev']}} </td>
+                    <td>{{$item['Mar']}}        </td>
+                    <td>{{$item['Avril'] }}    </td>
+                    <td>{{$item['Mai'] }}         </td>
+                    <td>{{$item['Juin']}}          </td>
+                    <td>{{$item['Juil'] }}         </td>
+                    <td>{{$item['Aout'] }}        </td>
+                    <td>{{$item['Sept'] }}   </td>
+                    <td>{{$item['Oct'] }}          </td>
+                    <td>{{$item['Nov'] }}   </td>
+                    <td>{{$item['Dec'] }}          </td>
                     </tr>
-            @endforeach
-
+                 @endforeach
               </tbody>
             </table>
           </div>
@@ -89,12 +95,7 @@
     </div>
     <!--Row-->
 
-    <!-- Documentation Link -->
-    <div class="row">
-      <div class="col-lg-12">
 
-      </div>
-    </div>
 
     <!-- Modal Logout -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
@@ -126,58 +127,7 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-   <!-- Add a seller -->
-   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-   aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <h5 class="modal-title " id="exampleModalCenterTitle" >Ajouter un nouveau client</h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-       <div class="modal-body">
 
-       <form   class="from-group" method="POST" action='{{route('addsellerPerson.store')}}'>
-
-           @csrf
-            <div class="form-group row">
-                <label for="firstName" class="col-sm-3 col-form-label">Nom</label>
-                <div class="col-sm-9">
-                <input type="text" class="form-control" id="firstName" placeholder="first name" name="firstName" value="{{old('firstName')}}">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label for="lastName" class="col-sm-3 col-form-label">Prenom</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="lastName" placeholder="last name" name="lastName" value="{{old('lastName')}}">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label for="englishName" class="col-sm-3 col-form-label">English Name</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="englishName" placeholder="englishName" name="englishName" value="{{old('englishName')}}">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label for="email" class="col-sm-3 col-form-label">Email</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="email" placeholder="email" name="email"  value="{{old('email')}}">
-                </div>
-              </div>
-       </div>
-       <div class="modal-footer">
-         <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-         <button type="submit" class="btn btn-primary">Save</button>
-       </div>
-    </form>
-     </div>
-   </div>
- </div>
 
   @endsection
 
@@ -222,7 +172,14 @@ $(document).ready(function () {
 
   });
 </script>
+
+<script>
+    displayoldnew(){
+        document.getElementById(".displayoldnew1").style.display = "block";
+    }
+</script>
   @endsection
+
 
 
 

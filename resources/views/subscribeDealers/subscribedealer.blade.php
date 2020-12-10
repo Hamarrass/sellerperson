@@ -46,16 +46,16 @@
             <table class="table align-items-left table-flush" id="dataTable">
               <thead class="thead-light">
                 <tr>
-                  <th>Seller          </th>
+                  <th>Vendeur          </th>
                   <th>Date Vente      </th>
                   <th>Date Lancement  </th>
                   <th>DealerId        </th>
                   <th>new price       </th>
                   <th>old price       </th>
-                  <th>new client      </th>
+                  <th>Nouveau client      </th>
                   <th>Upgrade package </th>
-                  <th>Benifit </th>
-                  dateLancement
+                  <th>Bénéfice </th>
+
                 </tr>
               </thead>
 
@@ -133,7 +133,7 @@
    <div class="modal-dialog modal-dialog-centered" role="document">
      <div class="modal-content">
        <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalCenterTitle">Add Seller Person</h5>
+         <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter un nouveau client</h5>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
@@ -143,7 +143,7 @@
        <form    class="from-group" method="POST" action="{{route('subscribedealer.store')}}" >
            @csrf
            <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-3 col-form-label">Seller </label>
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Vendeur </label>
             <div class="col-sm-9">
               <select class="select2-single-placeholder form-control" name="seller_person_id" id="sellerpersonId">
                   <option value="">Select</option>
@@ -203,12 +203,17 @@
 
               <fieldset class="form-group">
                 <div class="row">
-                  <legend class="col-form-label col-sm-3 pt-0">New client</legend>
+                  <legend class="col-form-label col-sm-3 pt-0">Nouveau client</legend>
                   <div class="col-sm-9">
-                    <div class="form-check">
-                      <input type="checkbox"     class="form-check-input"  name="newClient" id="newClient"  value="99" >
+
+                      <input type="radio"     class="form-input"  name="newClient" id="newClient"  value="99" >
+                      <label for=""> 99$</label>
+                      <input type="radio"     class="form-input"  name="newClient" id="newClient"  value="199" >
+                      <label for="">199$</label>
+                      <input type="radio"     class="form-input"  name="newClient" id="newClient"  value="299" >
+                      <label for="">299$</label>
                       <br>
-                    </div>
+
 
                   </div>
                 </div>
@@ -226,7 +231,7 @@
 
                        <div>
                         <select class="select2-single-placeholder form-control" name="upgradePackage" id="upgradePackage">
-                                    <option value="" >Select</option>
+                                    <option value="0" > Select  upgrade </option>
                                     <option value="100">99$  -> 199$</option>
                                     <option value="200">99$  -> 299$</option>
                                     <option value="100">199$ -> 299$</option>
@@ -285,7 +290,7 @@ $(document).ready(function () {
 
     // Select2 Single  with Placeholder
     $('.select2-single-placeholder').select2({
-      placeholder: "Select a sellerPerson",
+      placeholder: "Select a  upgrade",
       allowClear: true
     });
 

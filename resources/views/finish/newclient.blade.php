@@ -24,10 +24,10 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
 
-              <h1 class="h3 mb-0 text-gray-800">Client   </h1>
+   <h1 class="h3 mb-0 text-gray-800">Récompense les vendeurs pour  les  nouveaux clients   </h1>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="./">Home</a></li>
-        <li class="breadcrumb-item">Tables</li>
+        <li class="breadcrumb-item"><a href="./">Home</a>            </li>
+        <li class="breadcrumb-item">Tables                           </li>
         <li class="breadcrumb-item active" aria-current="page">Client</li>
       </ol>
     </div>
@@ -41,37 +41,37 @@
             <table class="table align-items-left table-flush" id="dataTable">
               <thead class="thead-light">
                 <tr>
-                  <th>Seller          </th>
-                  <th>jan      </th>
-                  <th>fev  </th>
-                  <td>Mars        </td>
-                  <th>Avril        </th>
-                  <th>mai       </th>
-                  <th>Juin       </th>
-                  <th>Juil      </th>
-                  <th>Aout </th>
-                  <th>Sept </th>
-                  <th>Oct      </th>
-                  <th>Nov </th>
-                  <th>Dec </th>
+                  <th>Seller </th>
+                  <th>jan    </th>
+                  <th>fev    </th>
+                  <td>Mars   </td>
+                  <th>Avril  </th>
+                  <th>mai    </th>
+                  <th>Juin   </th>
+                  <th>Juil   </th>
+                  <th>Aout   </th>
+                  <th>Sept   </th>
+                  <th>Oct    </th>
+                  <th>Nov    </th>
+                  <th>Dec    </th>
                 </tr>
               </thead>
 
               <tbody>
                 @foreach ($newClient as $item)
                 <td>{{$item->seller_person_id}}       </td>
-                    <td>{{$item->Jan}} </td>
-                    <td>{{$item->Fev}} </td>
-                    <td>{{$item->Mar}}        </td>
-                    <td>{{$item->Avril }}    </td>
+                    <td>{{$item->Jan}}          </td>
+                    <td>{{$item->Fev}}          </td>
+                    <td>{{$item->Mar}}          </td>
+                    <td>{{$item->Avril }}       </td>
                     <td>{{$item->Mai }}         </td>
-                    <td>{{$item->Juin}}          </td>
-                    <td>{{$item->Juil }}         </td>
+                    <td>{{$item->Juin}}         </td>
+                    <td>{{$item->Juil }}        </td>
                     <td>{{$item->Aout }}        </td>
-                    <td>{{$item->Sept }}   </td>
-                    <td>{{$item->Oct }}          </td>
-                    <td>{{$item->Nov }}   </td>
-                    <td>{{$item->Dec }}          </td>
+                    <td>{{$item->Sept }}        </td>
+                    <td>{{$item->Oct }}         </td>
+                    <td>{{$item->Nov }}         </td>
+                    <td>{{$item->Dec }}         </td>
                     </tr>
                  @endforeach
               </tbody>
@@ -153,29 +153,29 @@
   <script src="vendor/clock-picker/clockpicker.js"></script>
   <!-- RuangAdmin Javascript -->
   <script src="js/ruang-admin.min.js"></script>
-<script>
-$(document).ready(function () {
+    <script>
+    $(document).ready(function () {
 
 
-    $('.select2-single').select2();
+        $('.select2-single').select2();
 
-    // Select2 Single  with Placeholder
-    $('.select2-single-placeholder').select2({
-      placeholder: "Select a sellerPerson",
-      allowClear: true
+        // Select2 Single  with Placeholder
+        $('.select2-single-placeholder').select2({
+        placeholder: "Select a sellerPerson",
+        allowClear: true
+        });
+
+
+
+
     });
+    </script>
 
-
-
-
-  });
-</script>
-
-<script>
-    displayoldnew(){
-        document.getElementById(".displayoldnew1").style.display = "block";
-    }
-</script>
+    <script>
+        displayoldnew(){
+            document.getElementById(".displayoldnew1").style.display = "block";
+        }
+    </script>
   @endsection
 
 

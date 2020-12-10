@@ -34,18 +34,18 @@ class HomeController extends Controller
     public function newClient()
     {
         $newClient= DB::select("SELECT
-        SUM(CASE WHEN MONTH(dateVente) = 1 THEN 100 ELSE 0 END) AS 'Jan',
-         SUM(CASE WHEN MONTH(dateVente) = 2 THEN 100 ELSE 0 END) AS 'Fev',
-         SUM(CASE WHEN MONTH(dateVente) = 3 THEN 100 ELSE 0 END) AS 'Mar',
-         SUM(CASE WHEN MONTH(dateVente) = 4 THEN 100 ELSE 0 END) AS 'Avril',
-        SUM(CASE WHEN MONTH(dateVente) = 5 THEN 100 ELSE 0 END) AS 'Mai',
-         SUM(CASE WHEN MONTH(dateVente) = 6 THEN 100 ELSE 0 END) AS 'Juin',
-         SUM(CASE WHEN MONTH(dateVente) = 7 THEN 100 ELSE 0 END) AS 'Juil',
-         SUM(CASE WHEN MONTH(dateVente) = 8 THEN 100 ELSE 0 END) AS 'Aout',
-         SUM(CASE WHEN MONTH(dateVente) = 9 THEN 100 ELSE 0 END) AS 'Sept',
-         SUM(CASE WHEN MONTH(dateVente) = 10 THEN 100 ELSE 0 END) AS 'Oct',
-         SUM(CASE WHEN MONTH(dateVente) = 11 THEN 100 ELSE 0 END) AS 'Nov',
-        SUM(CASE WHEN MONTH(dateVente) = 12 THEN 100 ELSE 0 END) AS 'Dec',
+         SUM(CASE WHEN MONTH(dateVente) = 1 THEN benifit ELSE 0 END) AS 'Jan',
+         SUM(CASE WHEN MONTH(dateVente) = 2 THEN benifit ELSE 0 END) AS 'Fev',
+         SUM(CASE WHEN MONTH(dateVente) = 3 THEN benifit ELSE 0 END) AS 'Mar',
+         SUM(CASE WHEN MONTH(dateVente) = 4 THEN benifit ELSE 0 END) AS 'Avril',
+         SUM(CASE WHEN MONTH(dateVente) = 5 THEN benifit ELSE 0 END) AS 'Mai',
+         SUM(CASE WHEN MONTH(dateVente) = 6 THEN benifit ELSE 0 END) AS 'Juin',
+         SUM(CASE WHEN MONTH(dateVente) = 7 THEN benifit ELSE 0 END) AS 'Juil',
+         SUM(CASE WHEN MONTH(dateVente) = 8 THEN benifit ELSE 0 END) AS 'Aout',
+         SUM(CASE WHEN MONTH(dateVente) = 9 THEN benifit ELSE 0 END) AS 'Sept',
+         SUM(CASE WHEN MONTH(dateVente) = 10 THEN benifit ELSE 0 END) AS 'Oct',
+         SUM(CASE WHEN MONTH(dateVente) = 11 THEN benifit ELSE 0 END) AS 'Nov',
+         SUM(CASE WHEN MONTH(dateVente) = 12 THEN benifit ELSE 0 END) AS 'Dec',
         seller_person_id
          FROM `subscribe_dealers` where newClient is not null group by seller_person_id");
          return view('finish.newclient',compact('newClient'));
@@ -54,15 +54,15 @@ class HomeController extends Controller
     public function upgradePackage()
     {
         $upgradePackage= DB::select("SELECT
-        SUM(CASE WHEN MONTH(dateVente) = 1 THEN upgradePackage ELSE 0 END) AS 'Jan',
-        SUM(CASE WHEN MONTH(dateVente) = 2 THEN upgradePackage ELSE 0 END) AS 'Fev',
-        SUM(CASE WHEN MONTH(dateVente) = 3 THEN upgradePackage ELSE 0 END) AS 'Mar',
-        SUM(CASE WHEN MONTH(dateVente) = 4 THEN upgradePackage ELSE 0 END) AS 'Avril',
-        SUM(CASE WHEN MONTH(dateVente) = 5 THEN upgradePackage ELSE 0 END) AS 'Mai',
-        SUM(CASE WHEN MONTH(dateVente) = 6 THEN upgradePackage ELSE 0 END) AS 'Juin',
-        SUM(CASE WHEN MONTH(dateVente) = 7 THEN upgradePackage ELSE 0 END) AS 'Juil',
-        SUM(CASE WHEN MONTH(dateVente) = 8 THEN upgradePackage ELSE 0 END) AS 'Aout',
-        SUM(CASE WHEN MONTH(dateVente) = 9 THEN upgradePackage ELSE 0 END) AS 'Sept',
+        SUM(CASE WHEN MONTH(dateVente) = 1  THEN upgradePackage ELSE 0 END) AS 'Jan',
+        SUM(CASE WHEN MONTH(dateVente) = 2  THEN upgradePackage ELSE 0 END) AS 'Fev',
+        SUM(CASE WHEN MONTH(dateVente) = 3  THEN upgradePackage ELSE 0 END) AS 'Mar',
+        SUM(CASE WHEN MONTH(dateVente) = 4  THEN upgradePackage ELSE 0 END) AS 'Avril',
+        SUM(CASE WHEN MONTH(dateVente) = 5  THEN upgradePackage ELSE 0 END) AS 'Mai',
+        SUM(CASE WHEN MONTH(dateVente) = 6  THEN upgradePackage ELSE 0 END) AS 'Juin',
+        SUM(CASE WHEN MONTH(dateVente) = 7  THEN upgradePackage ELSE 0 END) AS 'Juil',
+        SUM(CASE WHEN MONTH(dateVente) = 8  THEN upgradePackage ELSE 0 END) AS 'Aout',
+        SUM(CASE WHEN MONTH(dateVente) = 9  THEN upgradePackage ELSE 0 END) AS 'Sept',
         SUM(CASE WHEN MONTH(dateVente) = 10 THEN upgradePackage ELSE 0 END) AS 'Oct',
         SUM(CASE WHEN MONTH(dateVente) = 11 THEN upgradePackage ELSE 0 END) AS 'Nov',
         SUM(CASE WHEN MONTH(dateVente) = 12 THEN upgradePackage ELSE 0 END) AS 'Dec'
@@ -70,6 +70,75 @@ class HomeController extends Controller
         FROM `subscribe_dealers` where upgradePackage is not null group by seller_person_id");
         return view('finish.upgradepackage',compact('upgradePackage'));
     }
+
+
+
+    public function total()
+    {
+       $newClient= DB::select("SELECT
+        SUM(CASE WHEN MONTH(dateVente) = 1 THEN benifit ELSE 0 END) AS 'Jan',
+        SUM(CASE WHEN MONTH(dateVente) = 2 THEN benifit ELSE 0 END) AS 'Fev',
+        SUM(CASE WHEN MONTH(dateVente) = 3 THEN benifit ELSE 0 END) AS 'Mar',
+        SUM(CASE WHEN MONTH(dateVente) = 4 THEN benifit ELSE 0 END) AS 'Avril',
+        SUM(CASE WHEN MONTH(dateVente) = 5 THEN benifit ELSE 0 END) AS 'Mai',
+        SUM(CASE WHEN MONTH(dateVente) = 6 THEN benifit ELSE 0 END) AS 'Juin',
+        SUM(CASE WHEN MONTH(dateVente) = 7 THEN benifit ELSE 0 END) AS 'Juil',
+        SUM(CASE WHEN MONTH(dateVente) = 8 THEN benifit ELSE 0 END) AS 'Aout',
+        SUM(CASE WHEN MONTH(dateVente) = 9 THEN benifit ELSE 0 END) AS 'Sept',
+        SUM(CASE WHEN MONTH(dateVente) = 10 THEN benifit ELSE 0 END) AS 'Oct',
+        SUM(CASE WHEN MONTH(dateVente) = 11 THEN benifit ELSE 0 END) AS 'Nov',
+        SUM(CASE WHEN MONTH(dateVente) = 12 THEN benifit ELSE 0 END) AS 'Dec',
+       seller_person_id
+        FROM `subscribe_dealers` where newClient is not null group by seller_person_id");
+
+    $upgradePackage= DB::select("SELECT
+    SUM(CASE WHEN MONTH(dateVente) = 1 THEN upgradePackage ELSE 0 END) AS 'Jan',
+    SUM(CASE WHEN MONTH(dateVente) = 2 THEN upgradePackage ELSE 0 END) AS 'Fev',
+    SUM(CASE WHEN MONTH(dateVente) = 3 THEN upgradePackage ELSE 0 END) AS 'Mar',
+    SUM(CASE WHEN MONTH(dateVente) = 4 THEN upgradePackage ELSE 0 END) AS 'Avril',
+    SUM(CASE WHEN MONTH(dateVente) = 5 THEN upgradePackage ELSE 0 END) AS 'Mai',
+    SUM(CASE WHEN MONTH(dateVente) = 6 THEN upgradePackage ELSE 0 END) AS 'Juin',
+    SUM(CASE WHEN MONTH(dateVente) = 7 THEN upgradePackage ELSE 0 END) AS 'Juil',
+    SUM(CASE WHEN MONTH(dateVente) = 8 THEN upgradePackage ELSE 0 END) AS 'Aout',
+    SUM(CASE WHEN MONTH(dateVente) = 9 THEN upgradePackage ELSE 0 END) AS 'Sept',
+    SUM(CASE WHEN MONTH(dateVente) = 10 THEN upgradePackage ELSE 0 END) AS 'Oct',
+    SUM(CASE WHEN MONTH(dateVente) = 11 THEN upgradePackage ELSE 0 END) AS 'Nov',
+    SUM(CASE WHEN MONTH(dateVente) = 12 THEN upgradePackage ELSE 0 END) AS 'Dec'
+    ,seller_person_id
+    FROM `subscribe_dealers` where upgradePackage is not null group by seller_person_id");
+
+
+$data = collect($newClient)->merge($upgradePackage);
+
+$total = $data->groupBy('seller_person_id')->map(function ($row) {
+
+    return collect([
+        'Jan'   => $row->sum('Jan'),
+        'Fev'   => $row->sum('Fev'),
+        'Mar'   => $row->sum('Mar'),
+        'Avril' => $row->sum('Avril'),
+        'Mai'   => $row->sum('Mai'),
+        'Juin'  => $row->sum('Juin'),
+        'Juil'  => $row->sum('Juil'),
+        'Aout'  => $row->sum('Aout'),
+        'Sept'  => $row->sum('Sept'),
+        'Oct'   => $row->sum('Oct'),
+        'Nov'   => $row->sum('Nov'),
+        'Dec'   => $row->sum('Dec'),
+        'seller_person_id' => $row[0]->seller_person_id,
+      ]);
+});
+
+
+return view('finish.total',compact('total'));
+
+
+
+
+
+
+
+}
 
 
 
@@ -124,16 +193,38 @@ dd($upgradePackage);*/
 $data = collect($newClient)->merge($upgradePackage);
 //$data=$data->groupBy('seller_person_id');
 /*$data[2]=null;*/
-dd($data);
+//dd($data);
+
+$grouped = $data->groupBy('seller_person_id')->map(function ($row) {
+    return $row->sum('Dec');
+
+});
+
+
 
 
 
 $mois = $data->groupBy('seller_person_id')->map(function ($row) {
-    return $row->sum('Dec');
+    return collect([
+        'Jan' => $row->sum('Jan'),
+        'Fev' => $row->sum('Fev'),
+        'Mar' => $row->sum('Mar'),
+        'Avril' => $row->sum('Avril'),
+        'Mai' => $row->sum('Mai'),
+        'Juin' => $row->sum('Juin'),
+        'Juil' => $row->sum('Juil'),
+        'Aout' => $row->sum('Aout'),
+        'Sept' => $row->sum('Sept'),
+        'Oct' => $row->sum('Oct'),
+        'Nov' => $row->sum('Nov'),
+        'Dec' => $row->sum('Dec'),
+        'seller_person_id' => $row->sum('seller_person_id'),
+
+      ]);
 });
 
 
-dd($mois);
+dd($data,$mois);
 /*$grouped = $users->groupBy('seller_person_id')
                             ->map(function ($item) {
                                 return $item->sum('Dec')->sum('Nov');

@@ -43,12 +43,12 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="far fa-fw fa-window-maximize"></i>
-          <span>Parametrs </span>
+          <span>Ajouter </span>
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('addsellerPerson.index')}}">Add new seller</a>
-            <a class="collapse-item" href="{{route('subscribedealer.index')}}">Add new Dealer</a>
+            <a class="collapse-item" href="{{route('addsellerPerson.index')}}"> un nouveau vendeur</a>
+            <a class="collapse-item" href="{{route('subscribedealer.index')}}"> un nouveau client</a>
           </div>
         </div>
 
@@ -59,12 +59,14 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="far fa-fw fa-window-maximize"></i>
-          <span>Prix </span>
+          <span>Récompense pour</span>
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('new.client')}}">total prix new client</a>
-            <a class="collapse-item" href="{{route('upgrade.package')}}">total prix upgrade package</a>
+            <a class="collapse-item" href="{{route('new.client')}}">les nouveaux clients</a>
+            <a class="collapse-item" href="{{route('upgrade.package')}}"> les upgrade clients</a>
+            <a class="collapse-item" href="{{route('total')}}">Total  par vendeur</a>
+
           </div>
         </div>
 

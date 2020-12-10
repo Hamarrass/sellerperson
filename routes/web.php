@@ -34,5 +34,6 @@ Route::get('/sellerPerson', function () {
 
 Route::get('/new-client', [App\Http\Controllers\HomeController::class, 'newClient'])->name('new.client');
 Route::get('/upgrade-package', [App\Http\Controllers\HomeController::class, 'upgradePackage'])->name('upgrade.package');
+Route::get('/total', [App\Http\Controllers\HomeController::class, 'total'])->name('total');
 
 Route::get('/debug', [App\Http\Controllers\HomeController::class, 'debug'])->name('debug');

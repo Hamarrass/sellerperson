@@ -60,6 +60,14 @@ class SubscribeDealerController extends Controller
         if($newClient=='99'){
             $benifit += 100 ;
         }
+        if($newClient=='199'){
+            $benifit += 200 ;
+        }
+        if($newClient=='299'){
+            $benifit += 300 ;
+        }
+
+
         if($upgrade=='upgrade'){
 
             $benifit +=$upgradePrice  ;
