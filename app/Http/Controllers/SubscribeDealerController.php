@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\AddSellerPerson;
 use App\Models\SubscribeDealer;
@@ -47,14 +46,34 @@ class SubscribeDealerController extends Controller
         $newPrice        = $request->input('newPrice') ? $request->input('newPrice')  : 0;
         $pricenewold     = ($newPrice - $oldPrice)*0.1 ;
 
-
         $oldPrice        = $request->input('oldPrice');
         $newPrice        = $request->input('newPrice');
-
-
         $upgrade         = $request->input('upgrade');
         $upgradePrice    = $request->input('upgradePackage') ;
         $newClient       = $request->input('newClient');
+
+
+
+        $dateLancement   = $request->input('dateLancement');
+        $date            = \Carbon\Carbon::now();
+        $lastMonth       = $date->subMonth()->format('Y-m-d'); // November
+
+
+
+     /*start test*/
+    /* $to   = \Carbon\Carbon::createFromFormat('Y-m-d',$dateLancement);
+     $from = \Carbon\Carbon::createFromFormat('Y-m-d',$lastMonth)->addMonth();
+     $diff_in_days = $to->diffInDays($date);
+
+      $daysleft =$diff_in_days;
+
+      $benifit  =($daysleft/7)*0.1*;
+      dd($benifit);*/
+
+
+
+     /*end test*/
+
 
         $benifit=0;
         if($newClient=='99'){
@@ -79,6 +98,7 @@ class SubscribeDealerController extends Controller
         $dealers= new SubscribeDealer();
         $dealers->dateVente        = $request->input('dateVente');
         $dealers->dealerId         = $request->input('dealerId');
+        $dealers->dateLancement    = $request->input('dateLancement');
         $dealers->newClient        = $request->input('newClient');
         $dealers->upsellerAd360    = $request->input('upsellerAd360');
         $dealers->oldPrice         = $request->input('oldPrice');

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\benefitSeller;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
-class BenefitSellerController extends Controller
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class BenefitSellerController extends Controller
      */
     public function index()
     {
-        //
+        $countries=Country::cursor();
+         return view('countries.country',compact('countries'));
     }
 
     /**
@@ -35,16 +36,22 @@ class BenefitSellerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $country= new Country();
+        $country->name=$request->input('country');
+        $country->save();
+
+        return   redirect()->route('country.index');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\benefitSeller  $benefitSeller
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function show(benefitSeller $benefitSeller)
+    public function show(Country $country)
     {
         //
     }
@@ -52,10 +59,10 @@ class BenefitSellerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\benefitSeller  $benefitSeller
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function edit(benefitSeller $benefitSeller)
+    public function edit(Country $country)
     {
         //
     }
@@ -64,10 +71,10 @@ class BenefitSellerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\benefitSeller  $benefitSeller
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, benefitSeller $benefitSeller)
+    public function update(Request $request, Country $country)
     {
         //
     }
@@ -75,10 +82,10 @@ class BenefitSellerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\benefitSeller  $benefitSeller
+     * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function destroy(benefitSeller $benefitSeller)
+    public function destroy(Country $country)
     {
         //
     }

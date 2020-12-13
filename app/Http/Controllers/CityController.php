@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SellerPerson;
+use App\Models\City;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
-class SellerPersonController extends Controller
+class CityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,9 @@ class SellerPersonController extends Controller
      */
     public function index()
     {
-        return view('sellerPersons.sellerperson');
+        $countries=Country::cursor();
+        $cities=city::with('country')->get();
+        return view('cities.city',compact('countries','cities'));
     }
 
     /**
@@ -35,16 +38,20 @@ class SellerPersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cities= new City();
+        $cities->name       = $request->input('city');
+        $cities->country_id = $request->input('country_id');
+        $cities->save();
+        return  redirect()->route('city.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SellerPerson  $sellerPerson
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function show(SellerPerson $sellerPerson)
+    public function show(City $city)
     {
         //
     }
@@ -52,10 +59,10 @@ class SellerPersonController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SellerPerson  $sellerPerson
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function edit(SellerPerson $sellerPerson)
+    public function edit(City $city)
     {
         //
     }
@@ -64,10 +71,10 @@ class SellerPersonController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SellerPerson  $sellerPerson
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SellerPerson $sellerPerson)
+    public function update(Request $request, City $city)
     {
         //
     }
@@ -75,10 +82,10 @@ class SellerPersonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SellerPerson  $sellerPerson
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SellerPerson $sellerPerson)
+    public function destroy(City $city)
     {
         //
     }

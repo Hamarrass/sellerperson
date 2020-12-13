@@ -8,12 +8,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="img/logo/logo.png" rel="icon">
-  <title>SOFTWARE</title>
+  <title>Transporteur</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
   <!-- i use it for the page sellerperson -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 
 @yield('css')
@@ -29,7 +30,7 @@
         <div class="sidebar-brand-icon" >
           <img src="img/logo/logo2.png">
         </div>
-        <div class="sidebar-brand-text mx-2">SOFTWARE</div>
+        <div class="sidebar-brand-text mx-2">Transporteur</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item">
@@ -39,7 +40,7 @@
       </li>
       <hr class="sidebar-divider">
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="far fa-fw fa-window-maximize"></i>
@@ -71,7 +72,7 @@
         </div>
 
 
-      </li>
+      </li> -->
 
 
       <!--
@@ -122,6 +123,32 @@
           <span>Charts</span>
         </a>
       </li>-->
+
+  <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Ajouter </span>
+        </a>
+        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{route('transporteur.index')}}">Transporteur</a>
+          </div>
+        </div>
+        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="{{route('country.index')}}">Pays</a>
+            </div>
+         </div>
+         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="{{route('city.index')}}">City</a>
+            </div>
+         </div>
+
+
+      </li>
+
       <hr class="sidebar-divider">
 
     </ul>
@@ -337,17 +364,6 @@
   </div>
 </body>
 <!--end -->
-
-
-
-
-
-
-
-
-
-
-
 
 
   <script src="vendor/jquery/jquery.min.js"></script>

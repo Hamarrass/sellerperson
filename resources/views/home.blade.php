@@ -8,9 +8,7 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-
-
-                            <a href="{{route('addsellerPerson.index')}}"> Click here </a>
+                            <a href="{{route('city.index')}}"> Click here </a>
                         </div>
 
                 </div>

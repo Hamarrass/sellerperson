@@ -201,9 +201,6 @@ $grouped = $data->groupBy('seller_person_id')->map(function ($row) {
 });
 
 
-
-
-
 $mois = $data->groupBy('seller_person_id')->map(function ($row) {
     return collect([
         'Jan' => $row->sum('Jan'),

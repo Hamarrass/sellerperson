@@ -1,7 +1,12 @@
 <?php
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\TransporteurController;
 use App\Http\Controllers\AddSellerPersonController;
 use App\Http\Controllers\SubscribeDealerController;
 
@@ -27,6 +32,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('addsellerPerson', AddSellerPersonController::class);
 Route::resource('subscribedealer', SubscribeDealerController::class);
 
+//transporteur
+Route::resource('transporteur', TransporteurController::class);
+Route::resource('country', CountryController::class);
+Route::resource('city', CityController::class);
+
 Route::get('/sellerPerson', function () {
     return view('sellerPersons.sellerperson');
 });
@@ -37,3 +47,6 @@ Route::get('/upgrade-package', [App\Http\Controllers\HomeController::class, 'upg
 Route::get('/total', [App\Http\Controllers\HomeController::class, 'total'])->name('total');
 
 Route::get('/debug', [App\Http\Controllers\HomeController::class, 'debug'])->name('debug');
+
+
+

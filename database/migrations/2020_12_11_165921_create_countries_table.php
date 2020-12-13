@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBenefitSellersTable extends Migration
+class CreateCountriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateBenefitSellersTable extends Migration
      */
     public function up()
     {
-        Schema::create('benefit_sellers', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateBenefitSellersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('benefit_sellers');
+        Schema::dropIfExists('countries');
     }
 }
